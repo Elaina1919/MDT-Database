@@ -1,0 +1,109 @@
+#!/bin/bash
+#
+# Author        : Shuzhou Zhang
+# Date/Location : Dec 05, 2020/CERN,Geneva
+
+#Description: update gas map for BEE chambers
+#move BEE from Gas Rack 61/Channel 17 to Gas Rack 68/Channel 21
+#move BEE from Gas Rack 71/Channel 17 to Gas Rack 68/Channel 22
+select * from atlas_conf_mdt.devices d,atlas_conf_mdt.device_relations r, atlas_conf_mdt.devices d1 where d.device_oid=r.child_id and r.relation_type_id=41 and r.parent_id=d1.device_oid and r.until>sysdate and d1.device_name = 'Gas Rack 71/Channel 17';
+
+
+
+
+### outdate current gas setting
+
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee1c02_1 0   
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee1c04_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee1c06_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee1c08_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee1c10_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee1c12_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee1c14_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee1c16_1 0
+
+
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee2c02_1 0   
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee2c04_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee2c06_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee2c08_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee2c10_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee2c12_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee2c14_1 0
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" bee2c16_1 0
+
+
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee1a02_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee1a04_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee1a06_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee1a08_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee1a10_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee1a12_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee1a14_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee1a16_1 0
+
+
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee2a02_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee2a04_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee2a06_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee2a08_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee2a10_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee2a12_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee2a14_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" bee2a16_1 0
+
+./bin/outdate_device_relation "Gas Rack 61/Channel 17" eel2c05_1 0
+./bin/outdate_device_relation "Gas Rack 71/Channel 17" eel2a05_1 0
+
+
+#insert new gas mapping
+
+./bin/insert_new_device "Gas Channel" "Gas Rack 68/Channel 21" "GAS RACK 68/CHANNEL 21"
+
+./bin/insert_new_device_relation "Gas Rack 68" "Gas Rack 68/Channel 21" 21 
+
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee1c02_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee1c04_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee1c06_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee1c08_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee1c10_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee1c12_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee1c14_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee1c16_1 0
+
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee2c02_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee2c04_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee2c06_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee2c08_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee2c10_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee2c12_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee2c14_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" bee2c16_1 0
+
+./bin/insert_new_device_relation "Gas Rack 68/Channel 21" eel2c05_1 0
+
+
+./bin/insert_new_device "Gas Channel" "Gas Rack 68/Channel 22" "GAS RACK 68/CHANNEL 22"
+
+./bin/insert_new_device_relation "Gas Rack 68" "Gas Rack 68/Channel 22" 22
+
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee1a02_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee1a04_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee1a06_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee1a08_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee1a10_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee1a12_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee1a14_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee1a16_1 0
+
+
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee2a02_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee2a04_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee2a06_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee2a08_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee2a10_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee2a12_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee2a14_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" bee2a16_1 0
+
+./bin/insert_new_device_relation "Gas Rack 68/Channel 22" eel2a05_1 0

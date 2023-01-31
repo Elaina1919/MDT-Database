@@ -1,0 +1,238 @@
+#!/bin/bash
+#
+# Author        : Shuzhou Zhang
+# Date/Location : Oct 15, 2020/CERN,Geneva
+
+#Description: Add new sMDT chamber BIS7A10 into DB
+
+###Insert new devices
+
+### Clone Edge G1300 as EdgeN1G1300 
+#./bin/clone_config_set 'Edge G1300' 'EdgeN1G1300'
+### Switch to new config set 'EdgeN1G1300'
+#./bin/set_current_config 'EdgeN1G1300'
+
+
+
+#
+./bin/insert_new_device "MDT" BIX7A10 20MMMPIC01xx05
+./bin/insert_new_device "MDT" BIY7A10 FAKEMPIC010007
+#
+./bin/insert_new_device "Effective MDT" bix7a10 BIX7A10
+./bin/insert_new_device "Effective MDT" biy7a10 BIY7A10
+#
+./bin/insert_new_device "MDM" x101 20MMFIADxxx101
+#
+./bin/insert_new_device "CSM" xx-CSM-xx-xx-0078 20MMMICQxx0078 #78 is not used currently
+#
+./bin/insert_new_device "Multilayer" bix7a10_1 BIX7A10_1
+./bin/insert_new_device "Multilayer" bix7a10_2 BIX7A10_2
+
+
+#
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx128  20MMMPIZ3xx128
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx129  20MMMPIZ3xx129
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx130  20MMMPIZ3xx130
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx131  20MMMPIZ3xx131
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx132  20MMMPIZ3xx132
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx133  20MMMPIZ3xx133
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx134  20MMMPIZ3xx134
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx135  20MMMPIZ3xx135
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx136  20MMMPIZ3xx136
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx137  20MMMPIZ3xx137
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx138  20MMMPIZ3xx138
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx139  20MMMPIZ3xx139
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx140  20MMMPIZ3xx140
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx141  20MMMPIZ3xx141
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx142  20MMMPIZ3xx142
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx143  20MMMPIZ3xx143
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx144  20MMMPIZ3xx144
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx145  20MMMPIZ3xx145
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx146  20MMMPIZ3xx146
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx147  20MMMPIZ3xx147
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx148  20MMMPIZ3xx148
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx149  20MMMPIZ3xx149
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx150  20MMMPIZ3xx150
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx151  20MMMPIZ3xx151
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx152  20MMMPIZ3xx152
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx153  20MMMPIZ3xx153
+./bin/insert_new_device "Mezzanine Card" xx-436-01-xx154  20MMMPIZ3xx154
+
+
+
+
+### Insert device configs for EMDT
+
+./bin/insert_new_device_configs bix7a10 "EdgeN1G1300"
+
+./bin/insert_new_device_configs biy7a10 "EdgeN1G1300"
+
+### Insert config set items for EMDT 
+
+./bin/insert_new_config_set_items bix7a10 "EdgeN1G1300" "EdgeN1G1300"
+
+./bin/insert_new_config_set_items biy7a10 "EdgeN1G1300" "EdgeN1G1300"
+
+### Insert new device relations between Effective MDT and MDT chamber
+./bin/insert_new_device_relation bix7a10 BIX7A10 0
+./bin/insert_new_device_relation biy7a10 BIY7A10 0
+### Insert new device relations between MDT and MDT chamber
+./bin/insert_new_device_relation BIX7A10 BIY7A10 0 
+### Insert new device relations between Effective MDT and MDM 
+./bin/insert_new_device_relation bix7a10 B418 0 
+./bin/insert_new_device_relation biy7a10 X101 0  
+
+### Insert new device relations between MRODX and Effective MDT
+# 
+./bin/insert_new_device_relation EA.T12 bix7a10 0
+./bin/insert_new_device_relation EA.T04 biy7a10 5
+
+
+### Insert new device relations between Effective MDT and CSM
+./bin/insert_new_device_relation bix7a10 EU-CSM-04-15-0148 0 
+./bin/insert_new_device_relation biy7a10 xx-CSM-xx-xx-0078 0
+### Insert new device relations between MDT chamber and Multi-layer
+./bin/insert_new_device_relation BIX7A10 bix7a10_1 1 
+./bin/insert_new_device_relation BIX7A10 bix7a10_2 2 
+
+
+### Insert new device relations between Effective MDT and Mezzanine card
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx128  0
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx129  1
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx130  2
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx131  3
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx132  4
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx133  5
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx134  6
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx135  7
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx136  8
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx137  9
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx138  10
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx139  11
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx140  12
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx141  13
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx142  14
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx143  15
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx144  16
+./bin/insert_new_device_relation bix7a10 xx-436-01-xx145  17
+
+
+./bin/insert_new_device_relation biy7a10 xx-436-01-xx146  0
+./bin/insert_new_device_relation biy7a10 xx-436-01-xx147  1
+./bin/insert_new_device_relation biy7a10 xx-436-01-xx148  2
+./bin/insert_new_device_relation biy7a10 xx-436-01-xx149  3
+./bin/insert_new_device_relation biy7a10 xx-436-01-xx150  5
+./bin/insert_new_device_relation biy7a10 xx-436-01-xx151  7
+./bin/insert_new_device_relation biy7a10 xx-436-01-xx152  9
+./bin/insert_new_device_relation biy7a10 xx-436-01-xx153  11
+./bin/insert_new_device_relation biy7a10 xx-436-01-xx154  13
+
+
+
+### insert HV board relation
+
+./bin/insert_new_device_relation 'HV3540 SLOT11 CR1 BC3 SN32' 'bix7a10_1' 6
+./bin/insert_new_device_relation 'HV3540 SLOT11 CR1 BC3 SN32' 'bix7a10_2' 7
+
+### insert LV board relation 
+
+./bin/insert_new_device_relation 'LV3016 SLOT17 CR0 BC3 SN41' 'bix7a10' 5
+./bin/insert_new_device_relation 'LV3016 SLOT17 CR0 BC3 SN41' 'biy7a10' 5
+
+### update canbus
+
+./bin/insert_new_device_relation EIL4_A bix7a10 A04
+./bin/insert_new_device_relation EIL4_A biy7a10 A05
+./bin/insert_new_device_relation EIL4_A eilm4a09 A06
+./bin/insert_new_device_relation EIL4_A bix7a08 A07
+./bin/insert_new_device_relation EIL4_A biy7a08 A08
+./bin/insert_new_device_relation EIL4_A eil4a07 A09
+./bin/insert_new_device_relation EIL4_A bix7a06 A10
+./bin/insert_new_device_relation EIL4_A biy7a06 A11
+### update gas system
+
+./bin/insert_new_device_relation "Gas Rack 68/Channel 11" bix7a10_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 12" bix7a10_2 0
+
+
+### Insert parameters
+./bin/modify_mdt_parameter  BIX7A10 n_tsen 12            
+./bin/modify_mdt_parameter  BIX7A10 n_mezz 18           # Number of Mezzanine cards
+./bin/modify_mdt_parameter  BIX7A10 eta_tower  7        # 2A---eta_2, 2C---eta_-2, 1C---eta_-1 and so on
+./bin/modify_mdt_parameter  BIX7A10 phi_sector 5
+
+### Modify(insert) emdt Parameters ###
+./bin/modify_emdt_parameter BIX7A10 subdetector_id 99  # subdetector identifier 0x63, partition BIS7A02
+./bin/modify_emdt_parameter BIX7A10 emdt_enable 1
+
+### Modify(insert) mdm Parameters ###
+             ### mdm params are initialized, to be changed###
+./bin/modify_mdm_parameter BIX7A10 node 34     # 34 for B418
+./bin/modify_mdm_parameter BIX7A10 type 'b'     # MDM type ('b' = barrel, 'e' = endcap) 
+./bin/modify_mdm_parameter BIX7A10 mask_tsen 4095  # Temperature sensor mask  # Usually non-zero 2**num senor -1 
+./bin/modify_mdm_parameter BIX7A10 mask_bsen 15  # B-field sensor mask 2**num_sensor-1 4 b-senors for BIS7A02
+
+### Modify(insert) csm Parameters ###
+./bin/modify_csm_parameter BIX7A10 csm_enable 262143       # Enable all 18 mezzanine cards
+./bin/modify_csm_parameter BIX7A10 csm_conn_mezz_mask 262143
+./bin/modify_csm_parameter BIX7A10 csm_use_asd_offsets 1  # Use default value: 0
+./bin/modify_csm_parameter BIX7A10 csm_tdc_type 1
+
+
+
+
+### Insert parameters
+./bin/modify_mdt_parameter  BIY7A10 n_tsen 0            
+./bin/modify_mdt_parameter  BIY7A10 n_mezz 9           # Number of Mezzanine cards
+./bin/modify_mdt_parameter  BIY7A10 eta_tower  7        # 2A---eta_2, 2C---eta_-2, 1C---eta_-1 and so on
+./bin/modify_mdt_parameter  BIY7A10 phi_sector 5
+
+### Modify(insert) emdt Parameters ###
+./bin/modify_emdt_parameter BIY7A10 subdetector_id 99  # subdetector identifier 0x63   BIS7A06
+./bin/modify_emdt_parameter BIY7A10 emdt_enable 1
+
+### Modify(insert) mdm Parameters ###
+             ### mdm params are initialized, to be changed###
+./bin/modify_mdm_parameter BIY7A10 node 34      # currently 85 is not used in CANBUS EIL4_A  for BIS7A06 25 or 26
+./bin/modify_mdm_parameter BIY7A10 type 'b'     # MDM type ('b' = barrel, 'e' = endcap) 
+./bin/modify_mdm_parameter BIY7A10 mask_tsen 0  # Temperature sensor mask  # Usually non-zero
+./bin/modify_mdm_parameter BIY7A10 mask_bsen 0  # B-field sensor mask
+
+### Modify(insert) csm Parameters ###
+./bin/modify_csm_parameter BIY7A10 csm_enable 10927       # Enable 000010101010101111
+./bin/modify_csm_parameter BIY7A10 csm_conn_mezz_mask 10927
+./bin/modify_csm_parameter BIY7A10 csm_use_asd_offsets 1  # Use default value: 0
+./bin/modify_csm_parameter BIY7A10 csm_tdc_type 1
+
+### insert HV board relation
+
+./bin/insert_new_device_relation 'HV3540 SLOT11 CR1 BC3 SN32' 'bix7a10_1' 6
+./bin/insert_new_device_relation 'HV3540 SLOT11 CR1 BC3 SN32' 'bix7a10_2' 7
+
+### insert LV board relation 
+
+./bin/insert_new_device_relation 'LV3016 SLOT17 CR0 BC3 SN41' 'bix7a10' 5
+./bin/insert_new_device_relation 'LV3016 SLOT17 CR0 BC3 SN41' 'biy7a10' 5
+
+### update canbus
+
+
+
+### update gas system
+
+./bin/insert_new_device_relation "Gas Rack 68/Channel 11" bix7a10_1 0
+./bin/insert_new_device_relation "Gas Rack 68/Channel 12" bix7a10_2 0
+
+exec atlas_conf_mdt.gas_w.update_gas_value('BIX7A10', 'ML1', 'gas_volume', 69)
+exec atlas_conf_mdt.gas_w.update_gas_value('BIX7A10', 'ML2', 'gas_volume', 96)
+
+
+
+
+
+
+
+
+
+
+
